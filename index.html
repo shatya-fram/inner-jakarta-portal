@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Inner Jakarta · Portal</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%23EC3013'/%3E%3Crect x='120' y='120' width='160' height='160' fill='none' stroke='%23fff' stroke-width='14'/%3E%3Crect x='120' y='120' width='160' height='46' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+/* Tokens: Inner Jakarta Brand & Frontend Guide (Modernist, flat, ink-first, red as signal) */
+@font-face{font-family:'Archivo';font-style:normal;font-weight:400 800;font-stretch:100%;font-display:swap;src:url(fonts/archivo-vietnamese.woff2) format('woff2');unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB}
+@font-face{font-family:'Archivo';font-style:normal;font-weight:400 800;font-stretch:100%;font-display:swap;src:url(fonts/archivo-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Archivo';font-style:normal;font-weight:400 800;font-stretch:100%;font-display:swap;src:url(fonts/archivo-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root{
+  --bg:#f3f2f2;--surface:#eae9e9;--text:#201e1d;--accent:#ec3013;
+  --divider:color-mix(in srgb,#201e1d 40%,transparent);
+  --n100:#f8f4f4;--n700:#605d5d;--n800:#444141;
+  --a100:#fff2ef;--a600:#dd2b0f;--a700:#ae1800;--a800:#7c1405;
+  --font:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s6:24px;--s8:32px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);font-size:15px;line-height:1.55}
+h1,h2{font-weight:800;line-height:1.05;letter-spacing:-.015em;margin:0}
+p{margin:0}
+:focus{outline:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+::selection{background:color-mix(in srgb,var(--accent) 30%,transparent)}
+.page{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
+.kicker{font-size:12px;letter-spacing:.08em;font-weight:700;color:var(--a700);text-transform:uppercase}
+header.top{display:flex;align-items:center;justify-content:space-between;gap:var(--s4);flex-wrap:wrap;padding:var(--s4) var(--s8);border-bottom:2px solid var(--text)}
+.brand{display:flex;align-items:center;gap:var(--s3)}
+.brand b{display:block;font-weight:800;font-size:15px;line-height:1.15}
+.brand span{display:block;font-size:12px;color:var(--n700);line-height:1.15}
+.who{display:flex;align-items:center;gap:var(--s3)}
+.who .name{font-size:13px;font-weight:600}
+.tag{display:inline-flex;align-items:center;font-size:11px;letter-spacing:.02em;padding:3px 10px;background:var(--a100);color:var(--a800)}
+.tag.neutral{background:var(--n100);color:var(--n800)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;font:800 14px/1.2 var(--font);color:var(--text);background:transparent;border:1px solid transparent;padding:var(--s2) 14px;border-radius:0}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.primary{background:var(--accent);color:var(--bg)}
+.btn.primary:hover:not(:disabled){background:var(--a600)}
+.btn.primary:active:not(:disabled){background:var(--a700)}
+.btn.secondary{border-color:var(--divider)}
+.btn.secondary:hover{background:color-mix(in srgb,var(--text) 7%,transparent)}
+.btn.ghost{color:var(--accent);padding-inline:var(--s1)}
+.btn.ghost:hover:not(:disabled){background:color-mix(in srgb,var(--accent) 10%,transparent)}
+.btn.block{width:100%;min-height:44px;justify-content:space-between;margin-top:var(--s2)}
+.banner{padding:var(--s2) var(--s8);background:var(--a100);color:var(--a800);font-size:12px;border-bottom:1px solid var(--divider)}
+.auth{flex:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));border-bottom:2px solid var(--text)}
+.auth .intro{padding:var(--s8);display:flex;flex-direction:column;justify-content:space-between;gap:var(--s8);border-right:2px solid var(--text)}
+.auth h1{font-size:clamp(40px,6vw,76px);line-height:.95;letter-spacing:-.02em;text-wrap:balance}
+.reports{display:grid;grid-template-columns:1fr 1fr;border-top:2px solid var(--text)}
+.reports div{padding:var(--s4) var(--s4) 0 0}
+.reports div+div{padding:var(--s4) 0 0 var(--s4);border-left:1px solid var(--divider)}
+.reports small{display:block;font-size:12px;font-weight:700;color:var(--a700)}
+.reports b{display:block;font-size:14px;margin-top:4px}
+.auth .panel{padding:var(--s8);display:flex;align-items:center}
+form{width:100%;max-width:400px;display:flex;flex-direction:column;gap:var(--s4)}
+.field label{display:block;font-size:12px;margin-bottom:5px;color:color-mix(in srgb,var(--text) 70%,transparent)}
+.input{width:100%;min-height:36px;padding:6px 10px;font:inherit;font-size:14px;color:var(--text);caret-color:var(--accent);background:var(--surface);border:1px solid var(--divider);border-radius:0}
+.input:hover{border-color:color-mix(in srgb,var(--text) 45%,transparent)}
+.input:focus-visible{border-color:var(--accent);outline-offset:0}
+.pwwrap{position:relative}
+.pwwrap .input{padding-right:64px}
+.pwwrap button{position:absolute;right:2px;top:2px;bottom:2px;font-size:12px}
+.otp{font-size:28px;font-weight:700;letter-spacing:.4em;min-height:56px;font-variant-numeric:tabular-nums}
+.step{display:flex;flex-direction:column;gap:var(--s2);border-top:2px solid var(--text);padding-top:var(--s3)}
+.step h2{font-size:28px}
+.step p{font-size:14px;line-height:1.5;color:var(--n800)}
+.msg{font-size:13px;padding:var(--s2) 0;border-top:1px solid var(--divider);color:var(--n800)}
+.msg.err{color:var(--a700);border-top-color:var(--accent)}
+.fine{font-size:12px;color:var(--n700);line-height:1.5}
+.row{display:flex;justify-content:space-between;gap:var(--s3);flex-wrap:wrap}
+.menu-head{padding:var(--s8) var(--s8) var(--s6);border-bottom:2px solid var(--text);display:flex;flex-direction:column;gap:var(--s2)}
+.menu-head h1{font-size:clamp(32px,4vw,48px);line-height:1}
+.menu{flex:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
+.card{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between;gap:var(--s8);padding:var(--s8);min-height:360px;border-right:2px solid var(--text);border-bottom:2px solid var(--text);background:var(--bg);transition:background .15s;font-family:var(--font)}
+.card:hover:not([disabled]){background:var(--surface)}
+.card:focus-visible{outline:2px solid var(--accent);outline-offset:-4px}
+.card[disabled]{cursor:not-allowed;opacity:.55}
+.card .top{display:flex;justify-content:space-between;align-items:flex-start;width:100%}
+.card .num{font-weight:800;font-size:64px;line-height:1;color:var(--accent)}
+.card h2{font-size:clamp(26px,3vw,36px);margin-bottom:var(--s3)}
+.card p{font-size:15px;line-height:1.5;color:var(--n800);max-width:520px;text-wrap:pretty}
+.card .foot{display:flex;justify-content:space-between;align-items:center;width:100%;border-top:1px solid var(--divider);padding-top:var(--s4);font-size:13px;font-weight:700}
+.viewer{position:fixed;inset:0;display:flex;flex-direction:column;background:var(--bg);z-index:10}
+.vbar{height:48px;flex:none;display:flex;align-items:center;justify-content:space-between;gap:var(--s4);padding:0 var(--s4);border-bottom:2px solid var(--text)}
+.vbar b{font-size:13px;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vbar .l{display:flex;align-items:center;gap:var(--s3);min-width:0}
+.vstatus{flex:1;display:flex;align-items:center;padding:var(--s8)}
+.vstatus div{border-top:2px solid var(--accent);padding-top:var(--s3);min-width:280px}
+.vstatus b{display:block;font-size:20px}
+.vstatus span{font-size:13px;color:var(--n700)}
+iframe{flex:1;width:100%;border:0;display:block;background:#fff}
+noscript p{padding:var(--s8)}
+.tabs{display:flex;gap:0;border-bottom:2px solid var(--text);padding:0 var(--s8);flex-wrap:wrap}
+.tabs button{all:unset;cursor:pointer;padding:var(--s3) var(--s4);font:800 13px var(--font);border-bottom:3px solid transparent;margin-bottom:-2px}
+.tabs button[aria-selected=true]{border-bottom-color:var(--accent);color:var(--a700)}
+.tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.um{padding:var(--s6) var(--s8);display:flex;flex-direction:column;gap:var(--s4);max-width:1100px;width:100%}
+.um h2{font-size:24px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--s4)}
+.um form{max-width:none}
+table.t{border-collapse:collapse;width:100%;font-size:13px}
+.t th{text-align:left;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--n700);padding:6px 10px;border-bottom:2px solid var(--text);white-space:nowrap}
+.t td{padding:8px 10px;border-bottom:1px solid var(--divider);vertical-align:top}
+.t tr.bad td{background:var(--a100)}
+.tablewrap{overflow-x:auto}
+.ok{color:#1a6b3a;font-weight:700}
+.btn.sm{padding:4px 10px;font-size:12px}
+.muted{color:var(--n700);font-size:12px}
+@media (max-width:640px){
+  header.top,.auth .intro,.auth .panel,.menu-head,.card{padding-left:var(--s4);padding-right:var(--s4)}
+  .auth .intro{border-right:0;border-bottom:2px solid var(--text)}
+  .banner{padding-inline:var(--s4)}
+  .tabs,.um{padding-left:var(--s4);padding-right:var(--s4)}
+  .card{min-height:260px}
+}
+</style>
+</head>
+<body>
+<div id="app" class="page"><noscript><p>Portal ini membutuhkan JavaScript.</p></noscript></div>
+<script>
+'use strict';
+const SESSION = 'ijp.session';
+const SESSION_MS = 8 * 3600e3;
+const enc = s => new TextEncoder().encode(s);
+const b64d = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+const b64e = u => btoa(String.fromCharCode(...u));
+const hex = b => [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join('');
+const concat = (a, b) => { const o = new Uint8Array(a.length + b.length); o.set(a); o.set(b, a.length); return o; };
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+const MENUS = {
+  inner: { num: '01', title: 'INNER JAKARTA PERFORMANCE', desc: 'Top-down MTD vs LMTD, FB MS SOGA, share DMS, GA recovery dan peta kecamatan untuk 7 branch Inner Jakarta.' },
+  sd: { num: '02', title: 'SUPPLY & DEMAND PERFORMANCE', desc: 'Morning DSE briefing: overall SA/MC, PJP visit, penjualan ke outlet, gross add, KRO dan END BALANCE outlet.' }
+};
+const ROLE = { admin: 'Admin', viewer: 'User', branch: 'Branch' };
+const ARROW = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+const LOGO = '<svg viewBox="0 0 400 400" width="32" height="32" aria-hidden="true"><rect width="400" height="400" fill="#EC3013"/><rect x="120" y="120" width="160" height="160" fill="none" stroke="#fff" stroke-width="14"/><rect x="120" y="120" width="160" height="46" fill="#fff"/><rect x="150" y="196" width="30" height="60" fill="#fff"/><rect x="192" y="176" width="30" height="80" fill="#fff"/><rect x="234" y="212" width="30" height="44" fill="#fff"/></svg>';
+
+// A missing users.json is accepted only on a local machine (preview). On a public host it is a hard error,
+// otherwise anyone could walk in by deleting a file from the deploy.
+const LOCAL = ['localhost', '127.0.0.1', '[::1]', ''].includes(location.hostname);
+// On a local machine the S&D card opens the live dev app (website/ on :8088) so it always shows the freshest feeds;
+// on a public host the encrypted bundle is used.
+const LOCAL_LIVE = { sd: 'http://localhost:8088/#/mb_ringkasan' };
+const DEMO = { name: 'inner.jakarta', role: 'admin', branch: null, menus: ['inner', 'sd'] };
+
+const S = { um: { tab: 'list', list: [], loading: false, msg: '', err: '', form: null, rows: [], busy: false, prog: '' }, pw: { old: '', n1: '', n2: '' }, view: 'boot', user: '', pass: '', code: '', err: '', info: '', busy: false, showPw: false,
+  profile: null, preview: false, menu: null, frameSrc: '', status: '', resendIn: 0, otpTo: '' };
+let db = null, cfg = null, pending = null, timer = null, blobUrl = null, fails = 0, lockUntil = 0;
+
+const app = document.getElementById('app');
+const $ = id => document.getElementById(id);
+
+function session() {
+  try { const s = JSON.parse(sessionStorage.getItem(SESSION)); if (s && s.exp > Date.now()) return s; } catch (e) {}
+  try { sessionStorage.removeItem(SESSION); } catch (e) {}
+  return null;
+}
+function save(profile, keys, extra) {
+  const s = { ...(extra || {}), profile, keys, build: db ? db.build : 'preview', exp: Date.now() + SESSION_MS };
+  try { sessionStorage.setItem(SESSION, JSON.stringify(s)); } catch (e) {}
+  return s;
+}
+const profileOf = (rec, uid) => ({ uid, name: rec.n, role: rec.r, pos: rec.p || null, branch: rec.b || null, menus: Object.keys(rec.k) });
+
+async function unwrap(rec, kekBits) {
+  const kek = await crypto.subtle.importKey('raw', kekBits, 'AES-GCM', false, ['decrypt']);
+  const keys = {};
+  for (const m of Object.keys(rec.k)) {
+    const raw = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64d(rec.k[m].iv) }, kek, b64d(rec.k[m].ct));
+    keys[m] = b64e(new Uint8Array(raw));
+  }
+  return keys;
+}
+function finish(profile, keys, extra) {
+  fails = 0; pending = null; clearInterval(timer);
+  save(profile, keys, extra);
+  set({ busy: false, pass: '', code: '', err: '', info: '', resendIn: 0, profile, view: 'menu' });
+  if (deepRoute()) openReport('sd');
+}
+function startCooldown(sec) {
+  clearInterval(timer);
+  S.resendIn = sec; syncResend();
+  timer = setInterval(() => { S.resendIn = Math.max(0, S.resendIn - 1); if (!S.resendIn) clearInterval(timer); syncResend(); }, 1000);
+}
+function syncResend() {
+  const b = $('resend'); if (!b) return;
+  b.disabled = S.resendIn > 0 || S.busy;
+  b.textContent = S.resendIn > 0 ? 'Kirim ulang (' + S.resendIn + ' dtk)' : 'Kirim ulang kode';
+}
+
+async function otpCall(path, body) {
+  if (!cfg || !cfg.otpUrl) throw new Error('cfg');
+  const r = await fetch(cfg.otpUrl.replace(/\/$/, '') + path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  const j = await r.json().catch(() => ({}));
+  return { status: r.status, ...j };
+}
+async function sendOtp() {
+  const p = pending;
+  if (p.preview) return startCooldown(60);
+  const r = await otpCall('/otp/request', { uid: p.uid, auth: p.auth });
+  if (r.status === 401) throw new Error('auth');
+  if (r.status === 429) { startCooldown(r.retryIn || 60); S.info = 'Kode sebelumnya masih berlaku. Cek WhatsApp Anda.'; return; }
+  if (!r.ok) {
+    S.err = r.status === 502 ? 'Gagal mengirim kode. Pastikan nomor WhatsApp yang terdaftar aktif.' : 'Layanan OTP tidak dapat dihubungi.';
+    throw new Error('otp');
+  }
+  S.otpTo = r.channel === 'whatsapp' ? 'WhatsApp ' + r.to : (r.to || 'Telegram');
+  startCooldown(60);
+}
+
+async function login(e) {
+  e.preventDefault();
+  const u = S.user.trim().toLowerCase(), p = S.pass;
+  if (!u || !p) return set({ err: 'Isi username dan password.' });
+  if (fails >= 5 && Date.now() < lockUntil) return set({ err: 'Terlalu banyak percobaan. Coba lagi dalam 1 menit.' });
+  pending = null;
+  set({ busy: true, err: '', info: '' });
+  try {
+    if (!db) {
+      if (!S.preview) throw new Error('svc');
+      return finish({ ...DEMO, name: u }, {});
+    }
+    const uid = hex(await crypto.subtle.digest('SHA-256', enc(u)));
+    if (cfg && cfg.apiUrl) { try { const r = await fetch(cfg.apiUrl.replace(/\/$/, '') + '/users.json', { cache: 'no-store' }); if (r.ok) db = await r.json(); } catch (e) {} } // users may have been added since the page loaded
+    const rec = db.users[uid];
+    if (!rec) throw new Error('auth');
+    const base = await crypto.subtle.importKey('raw', enc(p), 'PBKDF2', false, ['deriveBits']);
+    const bits = new Uint8Array(await crypto.subtle.deriveBits({ name: 'PBKDF2', salt: b64d(rec.s), iterations: rec.i, hash: 'SHA-256' }, base, 256));
+    if (rec.o) {
+      const hk = await crypto.subtle.importKey('raw', bits, { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+      const auth = hex(await crypto.subtle.sign('HMAC', hk, enc('ijp-otp-auth')));
+      pending = { uid, rec, bits, auth };
+      await sendOtp();
+      return set({ busy: false, view: 'otp', pass: '', code: '' });
+    }
+    finish(profileOf(rec, uid), await unwrap(rec, bits));
+  } catch (err) {
+    const m = err && err.message;
+    if (m === 'otp') { pending = null; return set({ busy: false }); }
+    if (m === 'cfg') { pending = null; return set({ busy: false, err: 'Konfigurasi OTP belum ada (config.json).' }); }
+    if (m === 'svc') return set({ busy: false, err: 'Layanan login tidak tersedia. Hubungi admin.' });
+    if (m !== 'auth' && pending) { pending = null; return set({ busy: false, err: 'Layanan OTP tidak dapat dihubungi.' }); }
+    pending = null;
+    // a wrong password fails the AES-GCM unwrap (OperationError); a wrong username has no record. Same message for both.
+    fails++;
+    if (fails >= 5) lockUntil = Date.now() + 60e3;
+    set({ busy: false, err: 'Username atau password salah.' });
+  }
+}
+
+async function verify(e) {
+  e.preventDefault();
+  const code = S.code.replace(/\D/g, '');
+  if (code.length !== 6) return set({ err: 'Masukkan 6 digit kode.' });
+  const p = pending;
+  if (!p) return cancelOtp('Silakan masuk lagi.');
+  set({ busy: true, err: '', info: '' });
+  try {
+    if (p.preview) return finish(DEMO, {});
+    const r = await otpCall('/otp/verify', { uid: p.uid, auth: p.auth, code });
+    if (r.share) {
+      const fin = new Uint8Array(await crypto.subtle.digest('SHA-256', concat(p.bits, b64d(r.share))));
+      return finish(profileOf(p.rec, p.uid), await unwrap(p.rec, fin), { token: r.token || null, share: r.share });
+    }
+    if (r.error === 'code') return set({ busy: false, code: '', err: 'Kode salah. Sisa ' + r.left + ' percobaan.' });
+    if (r.error === 'expired') return set({ busy: false, code: '', err: 'Kode kedaluwarsa. Tekan Kirim ulang.' });
+    if (r.error === 'locked') return cancelOtp('Terlalu banyak kode salah. Silakan masuk lagi.');
+    throw new Error('svc');
+  } catch (err) {
+    if (err && err.name === 'OperationError') return cancelOtp('Kunci tidak cocok (ada deploy baru). Silakan masuk lagi.');
+    set({ busy: false, err: 'Layanan OTP tidak dapat dihubungi.' });
+  }
+}
+async function resend() {
+  if (S.resendIn > 0 || !pending) return;
+  set({ busy: true, err: '', info: '' });
+  try { await sendOtp(); set({ busy: false, code: '', info: 'Kode baru sudah dikirim.' }); }
+  catch (err) {
+    if (err && err.message === 'auth') return cancelOtp('Silakan masuk lagi.');
+    set({ busy: false });
+  }
+}
+function cancelOtp(msg) {
+  pending = null; clearInterval(timer);
+  set({ view: 'login', busy: false, code: '', info: '', resendIn: 0, err: typeof msg === 'string' ? msg : '' });
+}
+function logout() {
+  try { sessionStorage.removeItem(SESSION); } catch (e) {}
+  if (blobUrl) { URL.revokeObjectURL(blobUrl); blobUrl = null; }
+  set({ view: 'login', profile: null, frameSrc: '', menu: null, user: '', pass: '', err: '', info: '' });
+}
+/* deep link: https://<host>/inner-jakarta-portal/#/sd/<route>  e.g. #/sd/mb_gatrend?gaBasis=site opens the Supply & Demand report on that page after login */
+function deepRoute() { const m = /^#\/sd(\/.*)?$/.exec(location.hash || ''); return m ? '#' + (m[1] || '/mb_ringkasan') : ''; }
+async function openReport(m) {
+  const s = session();
+  if (!s) return logout();
+  if (!s.profile.menus.includes(m)) return;
+  set({ view: 'viewer', menu: m, frameSrc: '', status: 'Memuat laporan…' });
+  if (LOCAL && LOCAL_LIVE[m]) return set({ frameSrc: LOCAL_LIVE[m], status: '' });
+  if (!db) return set({ status: 'Mode pratinjau: laporan tidak dimuat.' });
+  try {
+    const r = await fetch('content/' + m + '.bin?b=' + (cfg && cfg.cb || db.build));
+    if (!r.ok) throw new Error('fetch');
+    const buf = new Uint8Array(await r.arrayBuffer());
+    set({ status: 'Mendekripsi…' });
+    const key = await crypto.subtle.importKey('raw', b64d(s.keys[m]), 'AES-GCM', false, ['decrypt']);
+    const gz = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: buf.slice(0, 12) }, key, buf.slice(12));
+    const html = await new Response(new Blob([gz]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
+    if (blobUrl) URL.revokeObjectURL(blobUrl);
+    blobUrl = URL.createObjectURL(new Blob([html], { type: 'text/html' }));
+    set({ frameSrc: blobUrl + (m === 'sd' ? (deepRoute() || '#/mb_ringkasan') : ''), status: '' });
+  } catch (e) {
+    try { sessionStorage.removeItem(SESSION); } catch (e2) {}
+    set({ view: 'login', profile: null, err: 'Sesi tidak berlaku lagi (ada deploy baru). Silakan masuk lagi.' });
+  }
+}
+function onFrameLoad(frame) {
+  const p = S.profile;
+  try { frame.contentWindow.postMessage({ type: 'ijp-profile', role: p && p.role, branch: p && p.branch }, '*'); } catch (err) {}
+}
+
+/* ---------- user management (admin) + change password ---------- */
+const POSITIONS = ['REGION OFFICE', 'DSO', 'HoA'];
+const ITER = 600000;
+const TEMPLATE = '﻿Nama Lengkap,Username,Posisi,Role,No Telp,Password\r\nContoh Nama,contoh.nama,DSO,USER,081234567890,GantiPassword123\r\n';
+const norm = v => String(v == null ? '' : v).trim();
+const key = v => norm(v).toLowerCase().replace(/[^a-z0-9]/g, '');
+const slug = n => norm(n).toLowerCase().replace(/[^a-z0-9]+/g, '.').replace(/^\.|\.$/g, '');
+const normWa = v => { const w = norm(v).replace(/\D/g, '').replace(/^0/, '62').replace(/^8/, '628'); return /^62\d{8,13}$/.test(w) ? w : null; };
+const maskWa = w => w ? '…' + String(w).slice(-4) : '';
+const roleOf = v => ({ user: 'viewer', viewer: 'viewer', admin: 'admin' }[key(v)] || null);
+const posOf = v => POSITIONS.find(p => key(p) === key(v)) || null;
+const isAdmin = () => { const s = session(); return !!(s && s.token && s.profile.role === 'admin'); };
+const uidOf = async u => hex(await crypto.subtle.digest('SHA-256', enc(u)));
+
+async function api(path, body) {
+  const s = session();
+  if (!s || !s.token || !cfg || !cfg.apiUrl) throw new Error('nosession');
+  const r = await fetch(cfg.apiUrl.replace(/\/$/, '') + path, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + s.token }, body: JSON.stringify(body || {}) });
+  const j = await r.json().catch(() => ({}));
+  if (r.status === 401 && j.error === 'token') { logout(); set({ err: 'Sesi habis. Silakan masuk lagi.' }); throw new Error('expired'); }
+  return { status: r.status, ...j };
+}
+// wrap the report keys the caller holds under a password (+ a fresh OTP share), exactly as build.mjs does
+async function makeRecord(password, keysB64) {
+  const salt = crypto.getRandomValues(new Uint8Array(16)), share = crypto.getRandomValues(new Uint8Array(32));
+  const base = await crypto.subtle.importKey('raw', enc(password), 'PBKDF2', false, ['deriveBits']);
+  const bits = new Uint8Array(await crypto.subtle.deriveBits({ name: 'PBKDF2', salt, iterations: ITER, hash: 'SHA-256' }, base, 256));
+  const kek = await crypto.subtle.importKey('raw', new Uint8Array(await crypto.subtle.digest('SHA-256', concat(bits, share))), 'AES-GCM', false, ['encrypt']);
+  const k = {};
+  for (const m of Object.keys(keysB64)) {
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const ct = new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, kek, b64d(keysB64[m])));
+    k[m] = { iv: b64e(iv), ct: b64e(ct) };
+  }
+  const hk = await crypto.subtle.importKey('raw', bits, { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+  const auth = hex(await crypto.subtle.sign('HMAC', hk, enc('ijp-otp-auth')));
+  return { pub: { s: b64e(salt), i: ITER, k }, share: b64e(share), auth };
+}
+async function umLoad() {
+  S.um.loading = true; render();
+  try { const r = await api('/admin/list'); S.um.list = r.users || []; S.um.err = r.error ? 'Gagal memuat daftar user.' : ''; }
+  catch (e) { if (e.message === 'expired') return; S.um.err = 'Layanan user tidak dapat dihubungi.'; }
+  S.um.loading = false; render();
+}
+const blankForm = () => ({ uid: '', name: '', username: '', pos: '', role: 'viewer', wa: '', pw: '', otp: true });
+function umTab(tab) { S.um.tab = tab; S.um.msg = ''; S.um.err = ''; if (tab === 'form' && !S.um.form) S.um.form = blankForm(); render(); }
+
+async function umSave(e) {
+  e.preventDefault();
+  const f = S.um.form, edit = !!f.uid, s = session();
+  const name = norm(f.name), username = (edit ? f.username : norm(f.username) || slug(name)).toLowerCase(), wa = normWa(f.wa);
+  const err = !name ? 'Nama lengkap wajib diisi.' : !/^[a-z0-9._-]{3,40}$/.test(username) ? 'Username 3-40 karakter: huruf kecil, angka, titik, strip.' :
+    !posOf(f.pos) ? 'Pilih posisi.' : !roleOf(f.role) ? 'Pilih role.' : !wa ? 'No telp harus format Indonesia, contoh 081234567890.' :
+    (!edit && f.pw.length < 8) || (f.pw && f.pw.length < 8) ? 'Password minimal 8 karakter.' : '';
+  if (err) { S.um.err = err; S.um.msg = ''; return render(); }
+  const exists = S.um.list.find(u => u.username === username);
+  if (!edit && exists) { S.um.err = 'Username sudah dipakai. Ubah user itu dari daftar.'; return render(); }
+  S.um.busy = true; S.um.err = ''; S.um.msg = ''; render();
+  try {
+    const uid = edit ? f.uid : await uidOf(username);
+    const item = { uid, username, name, pos: posOf(f.pos), role: roleOf(f.role), wa };
+    if (f.pw) Object.assign(item, await makeRecord(f.pw, s.keys));
+    const r = await api('/admin/upsert', { users: [item] });
+    const res = r.results && r.results[0];
+    if (!res || !res.ok) { S.um.err = r.error === 'last-admin' ? 'Harus tersisa minimal satu admin.' : 'Gagal menyimpan (' + ((res && res.error) || r.error || 'error') + ').'; }
+    else { S.um.msg = (edit ? 'User diperbarui: ' : 'User dibuat: ') + username; S.um.form = null; S.um.tab = 'list'; await umLoad(); }
+  } catch (x) { if (x.message === 'expired') return; S.um.err = 'Layanan user tidak dapat dihubungi.'; }
+  S.um.busy = false; render();
+}
+function umEdit(uid) {
+  const u = S.um.list.find(x => x.uid === uid); if (!u) return;
+  S.um.form = { uid, name: u.name, username: u.username, pos: u.pos || '', role: u.role, wa: u.wa, pw: '', otp: u.otp };
+  umTab('form');
+}
+async function umDelete(uid) {
+  const u = S.um.list.find(x => x.uid === uid); if (!u) return;
+  if (!confirm('Hapus user ' + u.username + '? Tindakan ini tidak bisa dibatalkan.')) return;
+  try {
+    const r = await api('/admin/delete', { uid });
+    if (r.ok) { S.um.msg = 'User dihapus: ' + u.username; await umLoad(); }
+    else S.um.err = r.error === 'self' ? 'Anda tidak bisa menghapus akun sendiri.' : 'Gagal menghapus.';
+  } catch (x) { if (x.message === 'expired') return; S.um.err = 'Layanan user tidak dapat dihubungi.'; }
+  render();
+}
+
+/* --- Excel / CSV upload --- */
+async function inflateRaw(bytes) { return new Uint8Array(await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).arrayBuffer()); }
+async function readZip(buf) {
+  const v = new DataView(buf), u8 = new Uint8Array(buf);
+  let e = u8.length - 22;
+  while (e >= 0 && v.getUint32(e, true) !== 0x06054b50) e--;
+  if (e < 0) throw new Error('zip');
+  const n = v.getUint16(e + 10, true); let p = v.getUint32(e + 16, true); const files = {};
+  for (let i = 0; i < n; i++) {
+    const method = v.getUint16(p + 10, true), csz = v.getUint32(p + 20, true), nl = v.getUint16(p + 28, true), xl = v.getUint16(p + 30, true), cl = v.getUint16(p + 32, true), lo = v.getUint32(p + 42, true);
+    const name = new TextDecoder().decode(u8.subarray(p + 46, p + 46 + nl));
+    const ds = lo + 30 + v.getUint16(lo + 26, true) + v.getUint16(lo + 28, true);
+    files[name] = { method, data: u8.subarray(ds, ds + csz) };
+    p += 46 + nl + xl + cl;
+  }
+  const get = async nm => { const f = files[nm]; if (!f) return null; return new TextDecoder().decode(f.method === 8 ? await inflateRaw(f.data) : f.data); };
+  return { files, get };
+}
+async function readXlsx(buf) {
+  const z = await readZip(buf), dp = new DOMParser();
+  const sheet = Object.keys(z.files).filter(k => /^xl\/worksheets\/sheet\d+\.xml$/.test(k)).sort((a, b) => parseInt(a.match(/\d+/)[0]) - parseInt(b.match(/\d+/)[0]))[0];
+  if (!sheet) throw new Error('sheet');
+  const ss = []; const sx = await z.get('xl/sharedStrings.xml');
+  if (sx) for (const si of dp.parseFromString(sx, 'application/xml').getElementsByTagName('si')) ss.push([...si.getElementsByTagName('t')].map(t => t.textContent).join(''));
+  const rows = [];
+  for (const row of dp.parseFromString(await z.get(sheet), 'application/xml').getElementsByTagName('row')) {
+    const r = [];
+    for (const c of row.getElementsByTagName('c')) {
+      const col = (c.getAttribute('r') || '').replace(/\d+/g, ''); let ci = 0; for (const ch of col) ci = ci * 26 + ch.charCodeAt(0) - 64;
+      const t = c.getAttribute('t'), vEl = c.getElementsByTagName('v')[0];
+      let val = t === 'inlineStr' ? [...c.getElementsByTagName('t')].map(x => x.textContent).join('') : vEl ? (t === 's' ? ss[+vEl.textContent] : vEl.textContent) : '';
+      r[Math.max(0, ci - 1)] = val;
+    }
+    rows.push(r);
+  }
+  return rows;
+}
+function readCsv(text) {
+  text = text.replace(/^﻿/, '');
+  const first = text.split(/\r?\n/, 1)[0], d = [',', ';', '\t'].map(c => [c, first.split(c).length]).sort((a, b) => b[1] - a[1])[0][0];
+  const rows = []; let r = [], c = '', q = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (q) { if (ch === '"') { if (text[i + 1] === '"') { c += '"'; i++; } else q = false; } else c += ch; }
+    else if (ch === '"') q = true;
+    else if (ch === d) { r.push(c); c = ''; }
+    else if (ch === '\n' || ch === '\r') { if (ch === '\r' && text[i + 1] === '\n') i++; r.push(c); c = ''; rows.push(r); r = []; }
+    else c += ch;
+  }
+  if (c || r.length) { r.push(c); rows.push(r); }
+  return rows;
+}
+const HEAD = { name: ['namalengkap', 'nama', 'name', 'fullname'], username: ['username', 'user', 'userid'], pos: ['posisi', 'position', 'jabatan'], role: ['role', 'peran', 'level'], wa: ['notelp', 'notlp', 'telp', 'telepon', 'nohp', 'hp', 'phone', 'whatsapp', 'wa', 'nowa'], pw: ['password', 'pass', 'katasandi'] };
+function rowsToUsers(rows) {
+  const hi = rows.findIndex(r => r.some(x => HEAD.name.includes(key(x))));
+  if (hi < 0) throw new Error('header');
+  const col = {}; rows[hi].forEach((h, i) => { for (const f in HEAD) if (HEAD[f].includes(key(h)) && col[f] == null) col[f] = i; });
+  const seen = new Set(), out = [];
+  for (const r of rows.slice(hi + 1)) {
+    if (!r.some(x => norm(x))) continue;
+    const g = f => norm(r[col[f]]);
+    const name = g('name'), username = (g('username') || slug(name)).toLowerCase(), pos = posOf(g('pos')), role = g('role') ? roleOf(g('role')) : 'viewer', wa = normWa(g('wa')), pw = g('pw');
+    const exists = S.um.list.find(u => u.username === username);
+    const errs = [];
+    if (!name) errs.push('nama kosong');
+    if (!/^[a-z0-9._-]{3,40}$/.test(username)) errs.push('username tidak valid');
+    if (seen.has(username)) errs.push('username dobel di file'); seen.add(username);
+    if (!pos) errs.push('posisi harus REGION OFFICE / DSO / HoA');
+    if (!role) errs.push('role harus USER / Admin');
+    if (!wa) errs.push('no telp tidak valid');
+    if (pw && pw.length < 8) errs.push('password min 8');
+    if (!pw && !exists) errs.push('password wajib (min 8)');
+    out.push({ name, username, pos, role, wa, pw, mode: exists ? 'update' : 'baru', errs: errs.filter(Boolean) });
+  }
+  return out;
+}
+async function umFile(file) {
+  S.um.msg = ''; S.um.err = ''; S.um.rows = [];
+  try {
+    const buf = await file.arrayBuffer();
+    const rows = /\.csv$|\.txt$/i.test(file.name) ? readCsv(new TextDecoder().decode(buf)) : await readXlsx(buf);
+    S.um.rows = rowsToUsers(rows);
+    if (!S.um.rows.length) S.um.err = 'Tidak ada baris data di file.';
+  } catch (e) { S.um.err = e.message === 'header' ? 'Header tidak ditemukan. Kolom wajib: Nama Lengkap, Posisi, Role, No Telp, Password.' : 'File tidak bisa dibaca. Pakai .xlsx atau .csv sesuai template.'; }
+  render();
+}
+async function umImport() {
+  const ok = S.um.rows.filter(r => !r.errs.length), s = session();
+  if (!ok.length) return;
+  S.um.busy = true; S.um.err = ''; S.um.msg = ''; render();
+  let done = 0, fail = [];
+  try {
+    for (let i = 0; i < ok.length; i += 10) {
+      const batch = [];
+      for (const r of ok.slice(i, i + 10)) {
+        S.um.prog = 'Memproses ' + (done + batch.length + 1) + ' / ' + ok.length + '…'; const pg = $('prog'); if (pg) pg.textContent = S.um.prog;
+        const it = { uid: await uidOf(r.username), username: r.username, name: r.name, pos: r.pos, role: r.role, wa: r.wa };
+        if (r.pw) Object.assign(it, await makeRecord(r.pw, s.keys));
+        batch.push(it);
+      }
+      const resp = await api('/admin/upsert', { users: batch });
+      (resp.results || []).forEach((x, j) => x.ok ? done++ : fail.push(batch[j].username + ' (' + x.error + ')'));
+      if (resp.error) { fail.push('batch ' + resp.error); break; }
+    }
+    S.um.msg = done + ' user berhasil diproses' + (fail.length ? ', gagal: ' + fail.join(', ') : '.');
+    S.um.rows = []; await umLoad();
+  } catch (x) { if (x.message === 'expired') return; S.um.err = 'Proses berhenti: layanan user tidak dapat dihubungi (' + done + ' sudah tersimpan).'; }
+  S.um.busy = false; S.um.prog = ''; render();
+}
+function downloadTemplate() {
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([TEMPLATE], { type: 'text/csv' })); a.download = 'template-user-portal.csv'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+
+/* --- change own password --- */
+async function changePw(e) {
+  e.preventDefault();
+  const { old, n1, n2 } = S.pw, s = session();
+  if (!old || !n1) return set({ err: 'Isi password lama dan baru.' });
+  if (n1.length < 8) return set({ err: 'Password baru minimal 8 karakter.' });
+  if (n1 !== n2) return set({ err: 'Konfirmasi password tidak sama.' });
+  if (n1 === old) return set({ err: 'Password baru harus berbeda.' });
+  set({ busy: true, err: '', info: '' });
+  try {
+    const rec = db.users[s.profile.uid];
+    const base = await crypto.subtle.importKey('raw', enc(old), 'PBKDF2', false, ['deriveBits']);
+    const bits = new Uint8Array(await crypto.subtle.deriveBits({ name: 'PBKDF2', salt: b64d(rec.s), iterations: rec.i, hash: 'SHA-256' }, base, 256));
+    const hk = await crypto.subtle.importKey('raw', bits, { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+    const oldAuth = hex(await crypto.subtle.sign('HMAC', hk, enc('ijp-otp-auth')));
+    const nr = await makeRecord(n1, s.keys);
+    const r = await api('/me/password', { oldAuth, pub: nr.pub, auth: nr.auth, share: nr.share });
+    if (r.error === 'old') return set({ busy: false, err: 'Password lama salah.' });
+    if (!r.ok) return set({ busy: false, err: 'Gagal mengganti password.' });
+    db.users[s.profile.uid] = { ...rec, ...nr.pub };
+    S.pw = { old: '', n1: '', n2: '' };
+    set({ busy: false, view: 'menu', info: 'Password berhasil diganti.' });
+  } catch (x) { if (x.message !== 'expired') set({ busy: false, err: 'Layanan tidak dapat dihubungi.' }); }
+}
+
+/* ---------- views ---------- */
+const hasToken = () => { const x = session(); return !!(x && x.token); };
+const roleLabel = () => S.profile ? (ROLE[S.profile.role] || S.profile.role) + (S.profile.pos ? ' · ' + S.profile.pos : '') + (S.profile.branch ? ' · ' + S.profile.branch : '') : '';
+const msgs = () =>
+  (S.err ? '<div role="alert" class="msg err">' + esc(S.err) + '</div>' : '') +
+  (S.info && !S.err ? '<div role="status" class="msg">' + esc(S.info) + '</div>' : '');
+
+function headerHtml(showWho) {
+  return '<header class="top"><div class="brand">' + LOGO + '<div><b>Inner Jakarta</b><span>Business Overview System</span></div></div>' +
+    (showWho ? '<div class="who"><span class="name">' + esc(S.profile.name) + '</span><span class="tag">' + esc(roleLabel()) + '</span>' + (hasToken() ? '<button type="button" class="btn secondary" data-act="pw-open">Ganti password</button>' : '') + '<button type="button" class="btn secondary" data-act="logout">Keluar</button></div>' : '') +
+    '</header>' + (S.preview ? '<div class="banner">Mode pratinjau (lokal): users.json belum ada, jadi username dan password apa pun diterima.</div>' : '');
+}
+function loginHtml() {
+  return '<div class="panel"><form id="f-login" autocomplete="on" novalidate>' +
+    '<div class="field"><label for="u">Username</label><input id="u" name="username" class="input" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="nama.pengguna" value="' + esc(S.user) + '"></div>' +
+    '<div class="field"><label for="p">Password</label><div class="pwwrap"><input id="p" name="password" class="input" type="' + (S.showPw ? 'text' : 'password') + '" autocomplete="current-password" value="' + esc(S.pass) + '">' +
+    '<button type="button" class="btn ghost" data-act="pw">' + (S.showPw ? 'Sembunyi' : 'Tampilkan') + '</button></div></div>' +
+    msgs() +
+    '<button type="submit" class="btn primary block"' + (S.busy ? ' disabled' : '') + '><span>' + (S.busy ? 'Memeriksa…' : 'Masuk') + '</span>' + ARROW + '</button>' +
+    '<p class="fine">Akses internal. Sesi berakhir setelah 8 jam atau saat browser ditutup.</p></form></div>';
+}
+function otpHtml() {
+  const note = S.preview ? 'Mode pratinjau: 6 digit apa pun diterima.' : 'Kode 6 digit dikirim ke ' + (S.otpTo || 'WhatsApp Anda') + ' dan berlaku 5 menit.';
+  return '<div class="panel"><form id="f-otp" novalidate>' +
+    '<div class="step"><div class="kicker">Langkah 2 dari 2</div><h2>Verifikasi WhatsApp</h2><p>' + esc(note) + '</p></div>' +
+    '<div class="field"><label for="otp">Kode verifikasi</label><input id="otp" class="input otp" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000" value="' + esc(S.code) + '"></div>' +
+    msgs() +
+    '<button type="submit" class="btn primary block"' + (S.busy ? ' disabled' : '') + '><span>' + (S.busy ? 'Memeriksa…' : 'Verifikasi') + '</span>' + ARROW + '</button>' +
+    '<div class="row"><button type="button" id="resend" class="btn ghost" data-act="resend"></button><button type="button" class="btn ghost" data-act="cancel">Ganti akun</button></div></form></div>';
+}
+function authHtml() {
+  return headerHtml(false) + '<main class="auth"><section class="intro"><div class="kicker">IOH · Region Inner Jakarta</div>' +
+    '<h1>Masuk ke portal laporan</h1><div class="reports"><div><small>01</small><b>Inner Jakarta Performance</b></div><div><small>02</small><b>Supply &amp; Demand Performance</b></div></div></section>' +
+    (S.view === 'otp' ? otpHtml() : loginHtml()) + '</main>';
+}
+function menuHtml() {
+  const allowed = S.profile ? S.profile.menus : [];
+  const cards = Object.keys(MENUS).map(k => {
+    const m = MENUS[k], ok = allowed.includes(k);
+    return '<button type="button" class="card" data-open="' + k + '"' + (ok ? '' : ' disabled') + '><div class="top"><span class="num">' + m.num + '</span><span class="tag neutral">' + (ok ? 'Tersedia' : 'Tidak ada akses') + '</span></div>' +
+      '<div><h2>' + esc(m.title) + '</h2><p>' + esc(m.desc) + '</p></div><div class="foot"><span>' + (ok ? 'Buka laporan' : 'Hubungi admin untuk akses') + '</span>' + ARROW.replace('width="18" height="18"', 'width="22" height="22"') + '</div></button>';
+  }).join('');
+  const adm = isAdmin() ? '<button type="button" class="card" data-act="users"><div class="top"><span class="num">03</span><span class="tag neutral">Admin</span></div><div><h2>USER MANAGEMENT</h2><p>Tambah dan ubah user, upload daftar user dari Excel, atur posisi, role, nomor OTP dan password.</p></div><div class="foot"><span>Kelola user</span>' + ARROW.replace('width="18" height="18"', 'width="22" height="22"') + '</div></button>' : '';
+  return headerHtml(true) + '<main style="flex:1;display:flex;flex-direction:column"><div class="menu-head"><div class="kicker">Pilih laporan</div><h1>Selamat datang, ' + esc(S.profile.name) + '</h1>' + (S.info ? '<p class="msg" role="status">' + esc(S.info) + '</p>' : '') + '</div><div class="menu">' + cards + adm + '</div></main>';
+}
+function viewerHtml() {
+  return '<div class="viewer"><div class="vbar"><div class="l"><button type="button" class="btn secondary" data-act="menu"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg><span>Menu</span></button><b>' + esc(MENUS[S.menu].title) + '</b></div>' +
+    '<div class="who"><span class="tag">' + esc(roleLabel()) + '</span><button type="button" class="btn ghost" data-act="logout">Keluar</button></div></div>' +
+    (S.status ? '<div class="vstatus"><div><b>' + esc(S.status) + '</b><span>Laporan dikirim terenkripsi dan dibuka di browser Anda.</span></div></div>' : '') +
+    (S.frameSrc && !S.status ? '<iframe id="frame" title="' + esc(MENUS[S.menu].title) + '" src="' + esc(S.frameSrc) + '"></iframe>' : '') + '</div>';
+}
+
+const fv = (k) => esc(S.um.form ? S.um.form[k] : '');
+function umHtml() {
+  const u = S.um, tabs = [['list', 'Daftar user'], ['form', u.form && u.form.uid ? 'Ubah user' : 'Tambah user'], ['upload', 'Upload Excel']];
+  let body = '';
+  if (u.tab === 'list') {
+    body = '<div class="row"><h2>Daftar user</h2><button type="button" class="btn secondary sm" data-act="um-new">+ Tambah user</button></div>' +
+      (u.loading ? '<p class="muted">Memuat…</p>' : '<div class="tablewrap"><table class="t"><thead><tr><th>Nama</th><th>Username</th><th>Posisi</th><th>Role</th><th>No telp (OTP)</th><th></th></tr></thead><tbody>' +
+      (u.list.length ? u.list.map(x => '<tr><td>' + esc(x.name) + '</td><td>' + esc(x.username) + '</td><td>' + esc(x.pos || '-') + '</td><td>' + (x.role === 'admin' ? 'Admin' : 'User') + '</td><td>' + esc(maskWa(x.wa)) + '</td><td style="white-space:nowrap"><button type="button" class="btn secondary sm" data-um-edit="' + esc(x.uid) + '">Ubah</button> <button type="button" class="btn ghost sm" data-um-del="' + esc(x.uid) + '">Hapus</button></td></tr>').join('') : '<tr><td colspan="6" class="muted">Belum ada user.</td></tr>') + '</tbody></table></div>');
+  } else if (u.tab === 'form') {
+    const f = u.form || blankForm(), edit = !!f.uid;
+    body = '<h2>' + (edit ? 'Ubah user' : 'Tambah user') + '</h2><form id="f-um" novalidate><div class="grid2">' +
+      '<div class="field"><label for="f_name">Nama lengkap</label><input id="f_name" data-f="name" class="input" value="' + fv('name') + '" autocomplete="off"></div>' +
+      '<div class="field"><label for="f_username">Username' + (edit ? ' (tidak bisa diubah)' : ' (kosong = dari nama)') + '</label><input id="f_username" data-f="username" class="input" value="' + fv('username') + '"' + (edit ? ' readonly' : '') + ' autocomplete="off" autocapitalize="none"></div>' +
+      '<div class="field"><label for="f_pos">Posisi</label><select id="f_pos" data-f="pos" class="input"><option value="">Pilih…</option>' + POSITIONS.map(p => '<option' + (f.pos === p ? ' selected' : '') + '>' + esc(p) + '</option>').join('') + '</select></div>' +
+      '<div class="field"><label for="f_role">Role</label><select id="f_role" data-f="role" class="input"><option value="viewer"' + (f.role === 'viewer' ? ' selected' : '') + '>User</option><option value="admin"' + (f.role === 'admin' ? ' selected' : '') + '>Admin</option></select></div>' +
+      '<div class="field"><label for="f_wa">No telp (untuk OTP WhatsApp)</label><input id="f_wa" data-f="wa" class="input" inputmode="tel" placeholder="081234567890" value="' + fv('wa') + '" autocomplete="off"></div>' +
+      '<div class="field"><label for="f_pw">Password' + (edit ? ' (kosong = tidak diubah)' : ' (min 8 karakter)') + '</label><input id="f_pw" data-f="pw" class="input" type="password" autocomplete="new-password" value="' + fv('pw') + '"></div></div>' +
+      '<div class="row"><button type="submit" class="btn primary"' + (u.busy ? ' disabled' : '') + '>' + (u.busy ? 'Menyimpan…' : edit ? 'Simpan perubahan' : 'Buat user') + '</button><button type="button" class="btn secondary" data-act="um-cancel">Batal</button></div></form>';
+  } else {
+    const good = u.rows.filter(r => !r.errs.length).length;
+    body = '<h2>Upload Excel</h2><p class="fine">Kolom: Nama Lengkap, Username (opsional), Posisi (REGION OFFICE / DSO / HoA), Role (USER / Admin), No Telp, Password. Username yang sudah ada diperbarui; password kosong berarti password lama dipertahankan.</p>' +
+      '<div class="row"><input type="file" id="um-file" accept=".xlsx,.csv,.txt" class="input" style="max-width:420px"><button type="button" class="btn secondary" data-act="um-tpl">Unduh template (CSV)</button></div>' +
+      (u.rows.length ? '<div class="tablewrap"><table class="t"><thead><tr><th>#</th><th>Nama</th><th>Username</th><th>Posisi</th><th>Role</th><th>No telp</th><th>Password</th><th>Status</th></tr></thead><tbody>' +
+        u.rows.map((r, i) => '<tr class="' + (r.errs.length ? 'bad' : '') + '"><td>' + (i + 1) + '</td><td>' + esc(r.name) + '</td><td>' + esc(r.username) + '</td><td>' + esc(r.pos || '') + '</td><td>' + (r.role === 'admin' ? 'Admin' : r.role ? 'User' : '') + '</td><td>' + esc(maskWa(r.wa)) + '</td><td>' + (r.pw ? '••••••••' : '') + '</td><td>' + (r.errs.length ? esc(r.errs.join('; ')) : '<span class="ok">' + r.mode + '</span>') + '</td></tr>').join('') +
+        '</tbody></table></div><div class="row"><span class="muted" id="prog">' + esc(u.prog) + '</span><button type="button" class="btn primary" data-act="um-import"' + (u.busy || !good ? ' disabled' : '') + '>' + (u.busy ? 'Memproses…' : 'Proses ' + good + ' user') + '</button></div>' : '');
+  }
+  return headerHtml(true) + '<main style="flex:1;display:flex;flex-direction:column"><div class="menu-head"><div class="kicker">Admin</div><h1>User Management</h1></div>' +
+    '<div class="tabs" role="tablist">' + tabs.map(t => '<button type="button" role="tab" aria-selected="' + (u.tab === t[0]) + '" data-um-tab="' + t[0] + '">' + t[1] + '</button>').join('') + '<button type="button" data-act="menu" style="margin-left:auto">← Menu</button></div>' +
+    '<div class="um">' + (u.err ? '<div role="alert" class="msg err">' + esc(u.err) + '</div>' : '') + (u.msg ? '<div role="status" class="msg">' + esc(u.msg) + '</div>' : '') + body + '</div></main>';
+}
+function pwHtml() {
+  return headerHtml(true) + '<main class="auth"><section class="intro"><div class="kicker">Akun</div><h1>Ganti password</h1></section><div class="panel"><form id="f-pw" novalidate>' +
+    '<div class="field"><label for="pw_old">Password lama</label><input id="pw_old" data-p="old" class="input" type="password" autocomplete="current-password" value="' + esc(S.pw.old) + '"></div>' +
+    '<div class="field"><label for="pw_n1">Password baru (min 8 karakter)</label><input id="pw_n1" data-p="n1" class="input" type="password" autocomplete="new-password" value="' + esc(S.pw.n1) + '"></div>' +
+    '<div class="field"><label for="pw_n2">Ulangi password baru</label><input id="pw_n2" data-p="n2" class="input" type="password" autocomplete="new-password" value="' + esc(S.pw.n2) + '"></div>' +
+    msgs() + '<button type="submit" class="btn primary block"' + (S.busy ? ' disabled' : '') + '><span>' + (S.busy ? 'Menyimpan…' : 'Simpan password') + '</span>' + ARROW + '</button>' +
+    '<button type="button" class="btn ghost" data-act="menu">Batal</button></form></div></main>';
+}
+
+function render() {
+  const focus = document.activeElement && document.activeElement.id;
+  app.innerHTML = S.view === 'boot' ? '' : S.view === 'menu' ? menuHtml() : S.view === 'viewer' ? viewerHtml() : S.view === 'users' ? umHtml() : S.view === 'pw' ? pwHtml() : authHtml();
+  document.title = 'Inner Jakarta · Portal';
+  if (S.view === 'otp') syncResend();
+  const f = $('frame'); if (f) f.addEventListener('load', () => onFrameLoad(f));
+  const el = focus && $(focus); if (el && el.tagName === 'INPUT') { el.focus(); try { el.setSelectionRange(el.value.length, el.value.length); } catch (e) {} }
+}
+function set(patch) { Object.assign(S, patch); render(); }
+
+// Typing must not re-render (it would steal focus), so inputs write straight into state.
+app.addEventListener('input', e => {
+  const t = e.target;
+  if (t.id === 'u') { S.user = t.value; if (S.err) { S.err = ''; const m = app.querySelector('.msg.err'); if (m) m.remove(); } }
+  else if (t.id === 'p') { S.pass = t.value; if (S.err) { S.err = ''; const m = app.querySelector('.msg.err'); if (m) m.remove(); } }
+  else if (t.dataset && t.dataset.f && S.um.form) S.um.form[t.dataset.f] = t.value;
+  else if (t.dataset && t.dataset.p) S.pw[t.dataset.p] = t.value;
+  else if (t.id === 'otp') { t.value = S.code = t.value.replace(/\D/g, '').slice(0, 6); if (S.err) { S.err = ''; const m = app.querySelector('.msg.err'); if (m) m.remove(); } }
+});
+app.addEventListener('submit', e => { if (e.target.id === 'f-login') login(e); else if (e.target.id === 'f-otp') verify(e); else if (e.target.id === 'f-um') umSave(e); else if (e.target.id === 'f-pw') changePw(e); });
+app.addEventListener('change', e => { if (e.target.id === 'um-file' && e.target.files[0]) umFile(e.target.files[0]); });
+app.addEventListener('click', e => {
+  const c = e.target.closest('[data-open]'); if (c) return openReport(c.dataset.open);
+  const ut = e.target.closest('[data-um-tab]'); if (ut) { if (ut.dataset.umTab === 'form') S.um.form = S.um.form && S.um.form.uid ? S.um.form : blankForm(); return umTab(ut.dataset.umTab); }
+  const ue = e.target.closest('[data-um-edit]'); if (ue) return umEdit(ue.dataset.umEdit);
+  const ud = e.target.closest('[data-um-del]'); if (ud) return umDelete(ud.dataset.umDel);
+  const b = e.target.closest('[data-act]'); if (!b) return;
+  ({ logout, resend,
+     users: () => { if (!isAdmin()) return; S.um = { ...S.um, tab: 'list', form: null, rows: [], msg: '', err: '' }; set({ view: 'users', info: '', err: '' }); umLoad(); },
+     'um-new': () => { S.um.form = blankForm(); umTab('form'); },
+     'um-cancel': () => { S.um.form = null; umTab('list'); },
+     'um-tpl': downloadTemplate, 'um-import': umImport,
+     'pw-open': () => { S.pw = { old: '', n1: '', n2: '' }; set({ view: 'pw', err: '', info: '' }); }, cancel: () => cancelOtp(), menu: () => set({ view: 'menu' }),
+     pw: () => { const p = $('p'); S.pass = p ? p.value : S.pass; S.showPw = !S.showPw; set({}); const q = $('p'); if (q) q.focus(); } })[b.dataset.act]();
+});
+
+(async function init() {
+  const get = async f => { try { const r = await fetch(f, { cache: 'no-store' }); return r.ok ? await r.json() : null; } catch (e) { return null; } };
+  cfg = await get('config.json');
+  // the live user list lives in the Worker (users can be created in the portal); the static file is the seed / fallback
+  db = (cfg && cfg.apiUrl && await get(cfg.apiUrl.replace(/\/$/, '') + '/users.json')) || await get('users.json');
+  S.preview = !db && LOCAL;
+  let s = session();
+  if (s && db && s.build !== db.build) { try { sessionStorage.removeItem(SESSION); } catch (e) {} s = null; }
+  S.profile = s ? s.profile : null;
+  S.view = s ? 'menu' : 'login';
+  if (!db && !LOCAL) S.err = 'Layanan login tidak tersedia. Hubungi admin.';
+  render();
+  if (s && deepRoute()) openReport('sd');
+  if (!s && S.preview && /[?&]demo=otp\b/.test(location.search)) { pending = { preview: true }; S.view = 'otp'; startCooldown(60); render(); }
+})();
+</script>
+</body>
+</html>
