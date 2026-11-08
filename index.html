@@ -134,7 +134,8 @@ const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&a
 
 const MENUS = {
   inner: { num: '01', title: 'INNER JAKARTA PERFORMANCE', desc: 'Top-down MTD vs LMTD, FB MS SOGA, share DMS, GA recovery dan peta kecamatan untuk 7 branch Inner Jakarta.' },
-  sd: { num: '02', title: 'SUPPLY & DEMAND PERFORMANCE', desc: 'Morning DSE briefing: overall SA/MC, PJP visit, penjualan ke outlet, gross add, KRO dan END BALANCE outlet, serta Program & Tipe Outlet dengan target November (Bridge Target, Target vs Aktual, Summary Achievement, CRR / DRR).' }
+  sd: { num: '02', title: 'SUPPLY & DEMAND PERFORMANCE', desc: 'Morning DSE briefing: overall SA/MC, PJP visit, penjualan ke outlet, gross add, KRO dan END BALANCE outlet, serta Program & Tipe Outlet dengan target November (Bridge Target, Target vs Aktual, Summary Achievement, CRR / DRR).' },
+  soga: { num: '03', title: 'SOGA REVIEW, DMS DAN SOC', desc: 'Review interaktif SOGA, DMS dan SOC Inner Jakarta: area dengan penurunan terbesar, prioritas fokus, dan arah pemulihan GA mingguan.' }
 };
 const ROLE = { admin: 'Admin', viewer: 'User', branch: 'Branch' };
 const ARROW = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
@@ -146,7 +147,7 @@ const LOCAL = ['localhost', '127.0.0.1', '[::1]', ''].includes(location.hostname
 // On a local machine the S&D card opens the live dev app (website/ on :8088) so it always shows the freshest feeds;
 // on a public host the encrypted bundle is used.
 const LOCAL_LIVE = { sd: 'http://localhost:8088/#/mb_ringkasan' };
-const DEMO = { name: 'inner.jakarta', role: 'admin', branch: null, menus: ['inner', 'sd'] };
+const DEMO = { name: 'inner.jakarta', role: 'admin', branch: null, menus: ['inner', 'sd', 'soga'] };
 
 const S = { um: { tab: 'list', list: [], loading: false, msg: '', err: '', form: null, rows: [], busy: false, prog: '' }, pw: { old: '', n1: '', n2: '' }, view: 'boot', user: '', pass: '', code: '', err: '', info: '', busy: false, showPw: false,
   profile: null, preview: false, menu: null, frameSrc: '', status: '', resendIn: 0, otpTo: '' };
@@ -629,7 +630,7 @@ function otpHtml() {
 }
 function authHtml() {
   return headerHtml(false) + '<main class="auth"><section class="intro"><div class="kicker">IOH · Region Inner Jakarta</div>' +
-    '<h1>Masuk ke portal laporan</h1><div class="reports"><div><small>01</small><b>Inner Jakarta Performance</b></div><div><small>02</small><b>Supply &amp; Demand Performance</b></div></div></section>' +
+    '<h1>Masuk ke portal laporan</h1><div class="reports"><div><small>01</small><b>Inner Jakarta Performance</b></div><div><small>02</small><b>Supply &amp; Demand Performance</b></div><div><small>03</small><b>SOGA Review, DMS dan SOC</b></div></div></section>' +
     (S.view === 'otp' ? otpHtml() : loginHtml()) + '</main>';
 }
 function menuHtml() {
@@ -639,7 +640,7 @@ function menuHtml() {
     return '<button type="button" class="card" data-open="' + k + '"' + (ok ? '' : ' disabled') + '><div class="top"><span class="num">' + m.num + '</span><span class="tag neutral">' + (ok ? 'Tersedia' : 'Tidak ada akses') + '</span></div>' +
       '<div><h2>' + esc(m.title) + '</h2><p>' + esc(m.desc) + '</p></div><div class="foot"><span>' + (ok ? 'Buka laporan' : 'Hubungi admin untuk akses') + '</span>' + ARROW.replace('width="18" height="18"', 'width="22" height="22"') + '</div></button>';
   }).join('');
-  const adm = isAdmin() ? '<button type="button" class="card" data-act="users"><div class="top"><span class="num">03</span><span class="tag neutral">Admin</span></div><div><h2>USER MANAGEMENT</h2><p>Tambah dan ubah user, upload daftar user dari Excel, atur posisi, role, nomor OTP dan password.</p></div><div class="foot"><span>Kelola user</span>' + ARROW.replace('width="18" height="18"', 'width="22" height="22"') + '</div></button>' : '';
+  const adm = isAdmin() ? '<button type="button" class="card" data-act="users"><div class="top"><span class="num">04</span><span class="tag neutral">Admin</span></div><div><h2>USER MANAGEMENT</h2><p>Tambah dan ubah user, upload daftar user dari Excel, atur posisi, role, nomor OTP dan password.</p></div><div class="foot"><span>Kelola user</span>' + ARROW.replace('width="18" height="18"', 'width="22" height="22"') + '</div></button>' : '';
   return headerHtml(true) + '<main style="flex:1;display:flex;flex-direction:column"><div class="menu-head"><div class="kicker">Pilih laporan</div><h1>Selamat datang, ' + esc(S.profile.name) + '</h1>' + (S.info ? '<p class="msg" role="status">' + esc(S.info) + '</p>' : '') + '</div><div class="menu">' + cards + adm + '</div></main>';
 }
 function viewerHtml() {
